@@ -6,16 +6,17 @@
   "type": "module",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "chalk": "^5.0.1",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "joi": "^17.6.0",
     "mongodb": "^4.7.0",
-    "nodemon": "^2.0.19",
     "uuid": "^8.3.2"
   },
-  "devDependencies": {},
   "scripts": {
-    "start": "nodemon ./src/index.js"
+    "start": "node ./src/index.js",
+    "dev": "nodemon ./src/index.js"
   },
   "repository": {
     "type": "git",
@@ -26,5 +27,16 @@
   "bugs": {
     "url": "https://github.com/farias-77/projeto14-ulx-back/issues"
   },
-  "homepage": "https://github.com/farias-77/projeto14-ulx-back#readme"
+  "homepage": "https://github.com/farias-77/projeto14-ulx-back#readme",
+  "devDependencies": {
+    "@eslint/create-config": "^0.3.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.19.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.7.1"
+  }
 }
