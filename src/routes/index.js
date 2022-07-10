@@ -1,10 +1,10 @@
 import { Router } from "express";
 import authRouter from "./authRouter.js";
-import productRouter from "./productRouter.js";
+import cartproductRouter from "./cartproductRouter.js";
 
 const router = Router();
 
-router.use(productRouter);
+router.use(cartproductRouter);
 router.use(authRouter);
 
 
