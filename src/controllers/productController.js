@@ -19,17 +19,32 @@ export async function  creation(req, res) {
 export async function  cart(req, res) {
     const {email}=req.body;
   
+ 
+    const usar = await db.collection("users").findOne({email:email}) 
+    const pds = await db.collection("product").find().toArray();
+   
+    const userId =usar._id
+    const produtos = pds.filter( pd => (pd.userId.toString() == userId));
+    console.log(  produtos );
+   
+    
+    return res.send( produtos);
+   
+}
+export async function  YourProduct(req, res) {
+    const {email}=req.body;
+  
    console.log('oi')
    console.log( email)
     const usar = await db.collection("users").findOne({email:email}) 
     const pds = await db.collection("product").find().toArray();
    
     const userId =usar._id
-    const anoDeCriacao = pds.filter( pd => (pd.userId.toString() == userId));
-    console.log( anoDeCriacao );
+    const  produtos = pds.filter( pd => (pd.userId.toString() == userId));
+    console.log( produtos );
    
     
-    return res.send(anoDeCriacao);
+    return res.send( produtos);
    
 }
 export async function  cartdelete(req, res) {
