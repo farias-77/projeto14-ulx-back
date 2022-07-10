@@ -32,6 +32,7 @@ export async function signIn(req, res) {
 
         return res.status(200).send({ name: user.name, email, token });
     }
+    
 
     return res.status(401).send("Senha ou email incorretos!");
 }

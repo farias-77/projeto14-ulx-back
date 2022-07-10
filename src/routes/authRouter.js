@@ -15,4 +15,5 @@ authRouter.get("/sign-in", (req, res) => {
     res.send("Vai vendo - sign-in");
 });
 
+
 export default authRouter;
