@@ -12,7 +12,7 @@ export async function getProductInfo(req, res){
 
     const productId = req.params.productId;
     
-    const product = await db.collection('products').findOne({id: productId});
+    const product = await db.collection("products").findOne({id: productId});
 
     res.send(product);
 }
