@@ -3,7 +3,7 @@ import db from "../db/db.js";
 
 export async function getProductsArray(req, res){
 
-    const products = await db.collection("products").find().toArray();
+    const products = await db.collection("product").find().toArray();
 
     res.send(products);
 }
@@ -12,7 +12,7 @@ export async function getProductInfo(req, res){
 
     const productId = req.params.productId;
     
-    const product = await db.collection("products").findOne({id: productId});
+    const product = await db.collection("product").findOne({id: productId});
 
     res.send(product);
 }
