@@ -5,9 +5,8 @@ import cartproductRouter from "./cartproductRouter.js";
 
 const router = Router();
 
-router.use(productsRouter)
 router.use(authRouter);
+router.use(productsRouter);
 router.use(cartproductRouter);
-
 
 export default router;
