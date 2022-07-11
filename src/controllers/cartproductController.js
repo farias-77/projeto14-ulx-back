@@ -58,6 +58,17 @@ export async function  cartdelete(req, res) {
     return res.status(200).send("Produto criado com sucesso");
    
 }
+export async function  yourdelete(req, res) {
+    const {id}=req.body;
+ 
+   
+   const usersColection = db.collection("product");
+	await usersColection.deleteOne({ _id:  new ObjectId(id)  })
+   
+  
+    return res.status(200).send("Produto criado com sucesso");
+   
+}
 
 export async function  historic(req, res) {
     const {email}=req.body;
