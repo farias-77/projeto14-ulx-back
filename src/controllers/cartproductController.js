@@ -16,6 +16,19 @@ export async function  creation(req, res) {
     await db.collection("product").insertOne({ url, name, description,category,userId,price });
     return res.status(200).send("Produto criado com sucesso");
 }
+export async function  addCart(req, res) {
+    const {email,id} = req.body;
+   
+    const usar = await db.collection("users").findOne({email:email})
+    const usar2 = await db.collection("product").findOne({_id:  new ObjectId(id)})
+
+    await db.collection("cart").insertOne({ url:usar2.url, name:usar2.name, description:usar2.description,category:usar2.category,userId:usar._id,price:usar2.price});
+   console.log(id)
+   console.log(usar2.name)
+
+    return res.status(200).send("Produto criado com sucesso");
+}
+
 export async function  cart(req, res) {
     const {email}=req.body;
   
@@ -25,7 +38,6 @@ export async function  cart(req, res) {
    
     const userId =usar._id
     const produtos = pds.filter( pd => (pd.userId.toString() == userId));
-    console.log(  produtos );
    
     
     return res.send( produtos);
@@ -41,7 +53,7 @@ export async function  YourProduct(req, res) {
    
     const userId =usar._id
     const  produtos = pds.filter( pd => (pd.userId.toString() == userId));
-    console.log( produtos );
+    
    
     
     return res.send( produtos);
@@ -79,9 +91,32 @@ export async function  historic(req, res) {
    
     const userId =usar._id
     const Produto = pds.filter( pd => (pd.userId.toString() == userId));
-    console.log(  Produto );
+  
    
     
     return res.send( Produto);
+   
+}
+
+export async function  creationHistoric(req, res) {
+    const {email}=req.body;
+  
+   
+    const usar = await db.collection("users").findOne({email:email}) 
+    const pds = await db.collection("cart").find().toArray();
+   
+    const userId =usar._id
+    const Produto = pds.filter( pd => (pd.userId.toString() == userId));
+    
+  
+   for(let i=0;Produto.length>i;i++){
+    const idd =Produto[i].userId
+    
+    await db.collection("historic").insertOne(Produto[i]);
+    const usersColection = db.collection("cart");
+    await usersColection.deleteOne({ userId:   idd})
+   }
+    
+   return res.status(200).send("Historico criado com sucesso");
    
 }
