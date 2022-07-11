@@ -22,7 +22,7 @@ export async function  addCart(req, res) {
     const usar = await db.collection("users").findOne({email:email})
     const usar2 = await db.collection("product").findOne({_id:  new ObjectId(id)})
 
-    await db.collection("cart").insertOne({ url:usar2.url, name:usar2.name, description:usar2.description,category:usar2.category,userId:usar.userId,price:usar2.price});
+    await db.collection("cart").insertOne({ url:usar2.url, name:usar2.name, description:usar2.description,category:usar2.category,userId:usar._id,price:usar2.price});
    console.log(id)
    console.log(usar2.name)
 
