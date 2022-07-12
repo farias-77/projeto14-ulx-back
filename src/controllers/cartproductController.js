@@ -31,14 +31,12 @@ export async function  addCart(req, res) {
 
 export async function  cart(req, res) {
     const {email}=req.body;
-  
  
     const usar = await db.collection("users").findOne({email:email}) 
     const pds = await db.collection("cart").find().toArray();
    
-    const userId =usar._id
+    const userId =usar?._id
     const produtos = pds.filter( pd => (pd.userId.toString() == userId));
-   
     
     return res.send( produtos);
    
